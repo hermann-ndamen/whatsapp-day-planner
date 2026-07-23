@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Secrets — never ship real credentials into the image
+.env
+.env.*
+!.env.example
+
+# Python caches / build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Tooling
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Docs / meta not needed at runtime
+README.md
+LICENSE

@@ -178,6 +178,22 @@ standalone FastAPI app — it reuses the identical planner logic:
 uvicorn webhook:app --host 0.0.0.0 --port 8000
 ```
 
+### Run with Docker
+
+The scheduled cron jobs run on Modal, but you can self-host the inbound webhook
+in a container. The included `Dockerfile` serves `webhook:app` on port 8000:
+
+```bash
+# Build
+docker build -t day-planner .
+
+# Run the webhook, passing secrets from your local .env (never baked into the image)
+docker run --rm -p 8000:8000 --env-file .env day-planner
+```
+
+Then point your WhatsApp Cloud API webhook at `https://<host>/webhook`.
+`GET /health` returns `{"status": "ok"}` for readiness checks.
+
 ## Security notes
 
 - **No secrets in the repo.** Every credential is read from the environment via
